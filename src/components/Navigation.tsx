@@ -1,6 +1,4 @@
 "use client";
-import { Button, ConfigProvider, FloatButton } from "antd";
-import Image from "next/image";
 import React, { useState } from "react";
 import Chat from "./Icons/Chat";
 import Task from "./Icons/Task";
@@ -12,7 +10,7 @@ const Navigation = () => {
   const pathname = usePathname();
   const path: any = pathname?.split("/")[1];
   return (
-    <div className="fixed bottom-6 right-8 flex gap-4 ">
+    <div className="fixed z-50 bottom-6 right-8 flex gap-4 ">
       <div className="flex">
         {path === "task" ? (
           <Link
