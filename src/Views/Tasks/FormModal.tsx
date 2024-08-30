@@ -4,8 +4,10 @@ import { IoMdClose } from "react-icons/io";
 
 const FormModal = ({
   handleAddTask,
+  isLoading,
 }: {
   handleAddTask: (data: any) => void;
+  isLoading: string;
 }) => {
   return (
     <dialog id="modal_add_task" className="modal">
@@ -142,7 +144,11 @@ const FormModal = ({
                   </label>
                 </div>
                 <button className="btn" type="submit">
-                  Submit
+                  {isLoading === "addData" ? (
+                    <span className="loading loading-spinner loading-md"></span>
+                  ) : (
+                    "Add Task"
+                  )}
                 </button>
               </Form>
             )}

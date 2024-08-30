@@ -9,6 +9,7 @@ import { Field, Form, Formik } from "formik";
 import { IoMdClose } from "react-icons/io";
 import FormModal from "./FormModal";
 import CardTask from "./CardTask";
+import { toast } from "sonner";
 
 const TaskPage = () => {
   const [tasks, setTasks] = useState<any>([]);
@@ -64,12 +65,14 @@ const TaskPage = () => {
       // Perbarui state jika update berhasil
       if (result.status === 200) {
         setTasks(dataUpdate);
+        toast.success("Task updated successfully");
         getAllTasksData();
         setIsLoading("");
       }
     } catch (error) {
       console.log(error);
       setIsLoading("getData");
+      toast.error("Failed to update task");
     }
   };
 
@@ -77,7 +80,7 @@ const TaskPage = () => {
     setIsLoading("");
 
     try {
-      setIsLoading("getData");
+      setIsLoading("addData");
       const result = await taskServices.createTask(values);
       console.log(result, "result");
       if (result.status === 201) {
@@ -86,10 +89,12 @@ const TaskPage = () => {
         )?.close();
         getAllTasksData();
         setIsLoading("");
+        toast.success("Task added successfully");
       }
     } catch (error) {
       console.log(error);
       setIsLoading("");
+      toast.error("Failed to add task");
     }
   };
 
@@ -103,10 +108,12 @@ const TaskPage = () => {
       if (result.status === 200) {
         getAllTasksData();
         setIsLoading("");
+        toast.success("Task deleted successfully");
       }
     } catch (error) {
       console.log(error);
       setIsLoading("");
+      toast.error("Failed to delete task");
     }
   };
 
@@ -115,7 +122,7 @@ const TaskPage = () => {
   }, []);
 
   return (
-    <div className="pb-28">
+    <div className="">
       <div className="flex justify-between   py-6 pl-24 pr-6">
         <select
           className="border rounded-md text-center w-[118px] h-[40px] px-3 "
@@ -160,7 +167,7 @@ const TaskPage = () => {
       )}
 
       <>
-        <FormModal handleAddTask={handleAddTask} />
+        <FormModal handleAddTask={handleAddTask} isLoading={isLoading} />
       </>
     </div>
   );

@@ -47,7 +47,7 @@ const CardTask = ({
           />
           <div className="flex items-center  justify-between gap-7 w-full ">
             <p
-              className={`text-[#4F4F4F] text-base font-semibold ${
+              className={`text-[#4F4F4F] text-base  w-3/4 font-semibold ${
                 task.isChecked ? "line-through text-[#828282]" : ""
               }`}
             >
@@ -96,14 +96,14 @@ const CardTask = ({
                 </div>
                 <button
                   onClick={() => handleDelete(task.id)}
-                  className="text-red-500 border pr-8 w-[126px] h-[43px]  rounded-sm"
+                  className="text-red-500 border pr-8 w-[126px] h-[43px]  rounded-md"
                 >
                   delete
                 </button>
               </div>
               <div className="flex items-center gap-3 ">
                 <EditPen />
-                <p>{task.description}</p>
+                <p className="w-3/4">{task.description}</p>
               </div>
             </div>
           </div>
