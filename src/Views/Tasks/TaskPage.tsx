@@ -82,14 +82,13 @@ const TaskPage = () => {
     try {
       setIsLoading("addData");
       const result = await taskServices.createTask(values);
-      console.log(result, "result");
       if (result.status === 201) {
         (
           document.getElementById("modal_add_task") as HTMLDialogElement
         )?.close();
         getAllTasksData();
-        setIsLoading("");
         toast.success("Task added successfully");
+        setIsLoading("");
       }
     } catch (error) {
       console.log(error);
@@ -103,12 +102,11 @@ const TaskPage = () => {
 
     try {
       setIsLoading("getData");
-
       const result = await taskServices.deleteTask(id);
       if (result.status === 200) {
         getAllTasksData();
-        setIsLoading("");
         toast.success("Task deleted successfully");
+        setIsLoading("");
       }
     } catch (error) {
       console.log(error);
